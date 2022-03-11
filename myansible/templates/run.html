@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul class="nav nav-tabs h4">
+        <li class="active"><a href="#" data-toggle="tab">GROUP</a></li>
+        <li><a href="#" data-toggle="tab">HOST</a></li>
+    </ul>
+</div>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <div class="tab-content">
+            <div id="group" class="tab-pane fade ">
+                <select name="group" class="from-control">
+                    <opption value="">null</opption>
+                    {% for group in groups %}
+                        <option value="{{ group.GroupName }}">{{ group.GroupName }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div id="host" class="tab-pane fade">
+                <select name="host" class="form-contorl">
+                    <option value="">null</option>
+                    {% for host in hosts %}
+                        <option value="{{ host.HostName }}">{{ host.HostName }}:{{ host.HostIp }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>module</td>
+                    <td>argument</td>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for module in modules %}
+                        <tr>
+                            <td>
+                                <div class="radio">
+                                    <input type="radio" name="module" value="{{ module.ModuleName }}">
+                                    {{ module.ModuleName }}
+                                </div>
+                            </td>
+                            <td>{% for arg in module.argument_set.all %}
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="argument" value="{{ arg.ArgumentText }}">
+                                            {{ arg.ArgumentText }}
+                                        </label>
+                                    </div>
+                            {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+            </tbody>
+        </table>
+    <div class="center">
+        <input class="btn btn-primary" type="submit" value="run">
+        <input class="btn btn-primary" type="reset">
+    </div>
+    </form>
+</body>
+</html>

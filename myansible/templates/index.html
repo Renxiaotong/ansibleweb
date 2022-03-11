@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ansible</title>
+    <style>
+            ul{
+        list-style-type: none;
+    }
+            li{
+                display: inline-block;
+                width: 20%;
+                background: midnightblue;
+                padding-bottom: 20px;
+                padding-top: 20px;
+                text-align: center;
+            }
+            li:hover{
+                background: black;
+                font-size: large;
+                color: green;
+            }
+    </style>
+</head>
+<body  style="background: url(../static/imgs/backgroud.jpg) ; background-size:100% 100% ; background-attachment: fixed">
+<center>
+
+<ul>
+    <li>
+        <a href="{% url 'info' %}">
+            <img src="../static/imgs/hostinfo.jpg" width="100px"><br>
+            HostInfomation
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'addhost' %}">
+            <img src="../static/imgs/host.jpg" width="100px"><br>
+            AddHost
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'tasks' %}">
+            <img src="../static/imgs/tasts.jpg" width="100px"><br>
+            Tasks
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'run' %}">
+            <img src="../static/imgs/run.jpg" width="100px"><br>
+            Run
+        </a>
+    </li>
+</ul>
+<div>
+        Rxt@18565045539@163.com
+</div>
+</center>
+
+
+</body>
+</html>

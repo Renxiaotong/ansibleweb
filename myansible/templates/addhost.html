@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="POST" >
+    {% csrf_token %}
+    <div class="form-group">
+        <lable>GROUP</lable>
+        <input type="text" class="form-contorl" name="group">
+    </div>
+    <div class="form-group">
+        <lable>HOSTIP</lable>
+        <input type="text" class="form-contorl" name="ip">
+    </div>
+    <div class="form-group">
+        <lable>HOSTNAME</lable>
+        <input type="text" class="form-contorl" name="hostname">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="submit">
+    </div>
+</form>
+<form action="{% url 'delete' %}" method="POST" >
+    {% csrf_token %}
+    <div class="form-group">
+        <lable>GROUP</lable>
+        <input type="text" class="form-contorl" name="group">
+    </div>
+    <div class="form-group">
+        <lable>HOSTIP</lable>
+        <input type="text" class="form-contorl" name="ip">
+    </div>
+    <div class="form-group">
+        <lable>HOSTNAME</lable>
+        <input type="text" class="form-contorl" name="hostname">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="delete">
+    </div>
+</form>
+<hr>
+<table  class="hover">
+    <thead class="dg-primary">
+            <tr>
+                <td>GROUP</td>
+                <td>HOSTS</td>
+            </tr>
+    </thead>
+    <tbody>
+            {% for group in groups %}
+                <tr>
+                        <td>{{ group }}</td>
+                        <td>{% for host in group.hosts_set.all %}
+                                <div>{{ host.HostName }} : {{ host.HostIp }}</div>
+                            {% endfor %}
+                        </td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

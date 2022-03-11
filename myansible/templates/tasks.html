@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="POST" >
+    {% csrf_token %}
+    <div class="form-group">
+        <lable>MODULE</lable>
+        <input type="text" class="form-contorl" name="module">
+    </div>
+    <div class="form-group">
+        <lable>ARGUMENT</lable>
+        <input type="text" class="form-contorl" name="argument">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="submit">
+    </div>
+</form>
+<form action="{% url 'deletetask' %}" method="POST" >
+    {% csrf_token %}
+    <div class="form-group">
+        <lable>MODULE</lable>
+        <input type="text" class="form-contorl" name="module">
+    </div>
+    <div class="form-group">
+        <lable>ARGUMENT</lable>
+        <input type="text" class="form-contorl" name="argument">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="delete">
+    </div>
+</form>
+<hr>
+<table  class="hover">
+    <thead class="dg-primary">
+            <tr>
+                <td>MOUDLE</td>
+                <td>ARGUMENT</td>
+            </tr>
+    </thead>
+    <tbody>
+            {% for module in modules %}
+                <tr>
+                        <td>{{ module }}</td>
+                        <td>{% for argument in module.argument_set.all %}
+                                <div>{{ argument.ArgumentText }}</div>
+                            {% endfor %}
+                        </td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
