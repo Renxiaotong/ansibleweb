@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path ,include ,re_path
 from apis import views
 
-
+#后端api总控入口
 urlpatterns = [
     re_path("^$",views.index,name="index"),
     re_path(r"^hostinfo/$",views.info,name="info"),
