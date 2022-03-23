@@ -3,6 +3,8 @@ from sqlalchemy import create_engine,Column,String,Integer,ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import json
+
+#sqalchemy 的调用用于解析数据库主机清
 #create a database engine
 engine = create_engine(
     'mysql+pymysql://root:Rxt123..@127.0.0.1/ansibledb?charset=utf8',encoding='utf8'
