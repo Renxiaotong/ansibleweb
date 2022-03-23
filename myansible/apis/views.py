@@ -2,14 +2,16 @@ from django.shortcuts import render ,HttpResponse,redirect
 from apis.models import Groups,Hosts,Module,Argument
 import subprocess
 import subprocess
-# Create your views here.
 
+#index首页api 
 def index(request):
     return render(request,"index.html");
+#主机信息api
 def info(request):
     #subprocess.run("ansible all -m setup --tree /tmp/myyservers",shell=True);
     #subprocess.run("ansible-cmdb /tmp/myysetvers/ > ..//tempales/servers/servers.html",shell=True);
     return render(request,"servers.html");
+#添加主机api
 def addhost(request):
     if request.method == "POST":
         group = request.POST.get('group').strip();
@@ -22,6 +24,7 @@ def addhost(request):
     groups = Groups.objects.all();
     #hosts = Hosts.objects.get_or_creat
     return render(request,"addhost.html",{"groups":groups});
+#删除主机api
 def deletehost(request):
     if request.method == "POST":
         group = request.POST.get('group').strip();
@@ -40,6 +43,7 @@ def deletehost(request):
         else:
             return HttpResponse("no such note");
     return HttpResponse("delete succsful");
+#添加任务模快api
 def tasks(request):
     if request.method == "POST":
         module = request.POST.get('module').strip();
@@ -50,6 +54,7 @@ def tasks(request):
                 Module.objects.get(ModuleName=module).argument_set.get_or_create(ArgumentText=argument);
     modules = Module.objects.all();
     return render(request,"tasks.html",{"modules":modules});
+#删除任务模快api
 def deletetask(request):
     if request.method == "POST":
         module = request.POST.get('module').strip();
@@ -61,6 +66,7 @@ def deletetask(request):
             else:
                 return HttpResponse("you want to delete module please try SQL");
     return HttpResponse("delete succssful");
+#执行任务api
 def run(request):
     if request.method == "POST":
         group = request.POST.get('group').strip();
